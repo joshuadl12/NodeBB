@@ -9,7 +9,8 @@ const fs = require('fs');
 const path = require('path');
 const nconf = require('nconf');
 
-const paths = require('./paths');
+const { paths, pluginNamePattern } = require('../constants');
+
 const packageManager = nconf.get('package_manager');
 
 const supportedPackageManagerList = require('./package-install').supportedPackageManager; // load config from src/cli/package-install.js
@@ -21,13 +22,11 @@ if (process.platform === 'win32') {
 	packageManagerExecutable += '.cmd';
 }
 
-const dirname = paths.baseDir;
-
 function getModuleVersions(modules, callback) {
 	const versionHash = {};
 
-	async.eachLimit(modules, 50, function (module, next) {
-		fs.readFile(path.join(dirname, 'node_modules', module, 'package.json'), { encoding: 'utf-8' }, function (err, pkg) {
+	async.eachLimit(modules, 50, (module, next) => {
+		fs.readFile(path.join(paths.nodeModules, module, 'package.json'), { encoding: 'utf-8' }, (err, pkg) => {
 			if (err) {
 				return next(err);
 			}
@@ -40,27 +39,22 @@ function getModuleVersions(modules, callback) {
 				next(err);
 			}
 		});
-	}, function (err) {
+	}, (err) => {
 		callback(err, versionHash);
 	});
 }
 
 function getInstalledPlugins(callback) {
 	async.parallel({
-		files: async.apply(fs.readdir, path.join(dirname, 'node_modules')),
-		deps: async.apply(fs.readFile, path.join(dirname, 'package.json'), { encoding: 'utf-8' }),
-		bundled: async.apply(fs.readFile, path.join(dirname, 'install/package.json'), { encoding: 'utf-8' }),
-	}, function (err, payload) {
+		files: async.apply(fs.readdir, paths.nodeModules),
+		deps: async.apply(fs.readFile, paths.currentPackage, { encoding: 'utf-8' }),
+		bundled: async.apply(fs.readFile, paths.installPackage, { encoding: 'utf-8' }),
+	}, (err, payload) => {
 		if (err) {
 			return callback(err);
 		}
 
-		const isNbbModule = /^nodebb-(?:plugin|theme|widget|rewards)-[\w-]+$/;
-
-
-		payload.files = payload.files.filter(function (file) {
-			return isNbbModule.test(file);
-		});
+		payload.files = payload.files.filter(file => pluginNamePattern.test(file));
 
 		try {
 			payload.deps = Object.keys(JSON.parse(payload.deps).dependencies);
@@ -69,22 +63,18 @@ function getInstalledPlugins(callback) {
 			return callback(err);
 		}
 
-		payload.bundled = payload.bundled.filter(function (pkgName) {
-			return isNbbModule.test(pkgName);
-		});
-		payload.deps = payload.deps.filter(function (pkgName) {
-			return isNbbModule.test(pkgName);
-		});
+		payload.bundled = payload.bundled.filter(pkgName => pluginNamePattern.test(pkgName));
+		payload.deps = payload.deps.filter(pkgName => pluginNamePattern.test(pkgName));
 
 		// Whittle down deps to send back only extraneously installed plugins/themes/etc
-		const checklist = payload.deps.filter(function (pkgName) {
+		const checklist = payload.deps.filter((pkgName) => {
 			if (payload.bundled.includes(pkgName)) {
 				return false;
 			}
 
 			// Ignore git repositories
 			try {
-				fs.accessSync(path.join(dirname, 'node_modules', pkgName, '.git'));
+				fs.accessSync(path.join(paths.nodeModules, pkgName, '.git'));
 				return false;
 			} catch (e) {
 				return true;
@@ -96,7 +86,7 @@ function getInstalledPlugins(callback) {
 }
 
 function getCurrentVersion(callback) {
-	fs.readFile(path.join(dirname, 'install/package.json'), { encoding: 'utf-8' }, function (err, pkg) {
+	fs.readFile(paths.installPackage, { encoding: 'utf-8' }, (err, pkg) => {
 		if (err) {
 			return callback(err);
 		}
@@ -130,9 +120,9 @@ function checkPlugins(standalone, callback) {
 
 			request({
 				method: 'GET',
-				url: 'https://packages.nodebb.org/api/v1/suggest?version=' + payload.version + '&package[]=' + toCheck.join('&package[]='),
+				url: `https://packages.nodebb.org/api/v1/suggest?version=${payload.version}&package[]=${toCheck.join('&package[]=')}`,
 				json: true,
-			}, function (err, res, body) {
+			}, (err, res, body) => {
 				if (err) {
 					process.stdout.write('error'.red + ''.reset);
 					return next(err);
@@ -145,7 +135,7 @@ function checkPlugins(standalone, callback) {
 
 				let current;
 				let suggested;
-				const upgradable = body.map(function (suggestObj) {
+				const upgradable = body.map((suggestObj) => {
 					current = payload.plugins[suggestObj.package];
 					suggested = suggestObj.version;
 
@@ -172,16 +162,16 @@ function upgradePlugins(callback) {
 		standalone = true;
 	}
 
-	checkPlugins(standalone, function (err, found) {
+	checkPlugins(standalone, (err, found) => {
 		if (err) {
 			console.log('Warning'.yellow + ': An unexpected error occured when attempting to verify plugin upgradability'.reset);
 			return callback(err);
 		}
 
 		if (found && found.length) {
-			process.stdout.write('\n\nA total of ' + String(found.length).bold + ' package(s) can be upgraded:\n\n');
-			found.forEach(function (suggestObj) {
-				process.stdout.write('  * '.yellow + suggestObj.name.reset + ' (' + suggestObj.current.yellow + ' -> '.reset + suggestObj.suggested.green + ')\n'.reset);
+			process.stdout.write(`\n\nA total of ${String(found.length).bold} package(s) can be upgraded:\n\n`);
+			found.forEach((suggestObj) => {
+				process.stdout.write(`${'  * '.yellow + suggestObj.name.reset} (${suggestObj.current.yellow}${' -> '.reset}${suggestObj.suggested.green}${')\n'.reset}`);
 			});
 		} else {
 			if (standalone) {
@@ -198,18 +188,16 @@ function upgradePlugins(callback) {
 			name: 'upgrade',
 			description: '\nProceed with upgrade (y|n)?'.reset,
 			type: 'string',
-		}, function (err, result) {
+		}, (err, result) => {
 			if (err) {
 				return callback(err);
 			}
 
 			if (['y', 'Y', 'yes', 'YES'].includes(result.upgrade)) {
 				console.log('\nUpgrading packages...');
-				const args = packageManagerInstallArgs.concat(found.map(function (suggestObj) {
-					return suggestObj.name + '@' + suggestObj.suggested;
-				}));
+				const args = packageManagerInstallArgs.concat(found.map(suggestObj => `${suggestObj.name}@${suggestObj.suggested}`));
 
-				cproc.execFile(packageManagerExecutable, args, { stdio: 'ignore' }, function (err) {
+				cproc.execFile(packageManagerExecutable, args, { stdio: 'ignore' }, (err) => {
 					callback(err, false);
 				});
 			} else {

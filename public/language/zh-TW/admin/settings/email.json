@@ -4,9 +4,6 @@
 	"address-help": "下面的電子郵件地址代表收件人在“發送人”和“回覆”中所看到的地址。",
 	"from": "發送人",
 	"from-help": "用於郵件中顯示的發送人",
-	"sendmail-rate-limit": "發送<em>X</em>電子郵件",
-	"sendmail-rate-delta": "。。。每個<em>X</em>毫秒",
-	"sendmail-rate-help": "立刻設定 NodeBB 郵件程序限制 發送的電子郵件數量，以免壓垮電子郵件接收服務。 如果啟用了SMTP 傳輸，則這些選項不適用（如下所示）。",
 
 	"smtp-transport": "SMTP 通信",
 	"smtp-transport.enabled": "使用一個外部電子郵件系統來發送郵件",
@@ -25,6 +22,8 @@
 	"smtp-transport.username": "使用者名",
 	"smtp-transport.username-help": "<b>對於Gmail服務，</b>請在這裡輸入完整的電子信箱地址，尤其是如果您使用的是 Google Apps 託管的域名。",
 	"smtp-transport.password": "密碼",
+	"smtp-transport.pool": "Enable pooled connections",
+	"smtp-transport.pool-help": "Pooling connections prevents NodeBB from creating a new connection for every email. This option only applies if SMTP Transport is enabled.",
 
 	"template": "編輯電子郵件樣板",
 	"template.select": "選擇電子郵件樣板",
@@ -36,5 +35,7 @@
 	"subscriptions": "電子郵件摘要",
 	"subscriptions.disable": "禁用電子郵件摘要",
 	"subscriptions.hour": "摘要小時",
-	"subscriptions.hour-help": "請輸入一個代表小時的數字來發送排程的電子郵件摘要 (例如，對於午夜，<code>0</code>，對於下午5:00，<code>17</code>)。 請記住，這是根據伺服器本身的時間，可能與您的系統時鐘不完全符合。<br />伺服器的大致時間為：<span id =\"serverTime\"></ span><br /> 下一個每日摘要被排程在<span id =\"nextDigestTime\"></span>發送"
+	"subscriptions.hour-help": "請輸入一個代表小時的數字來發送排程的電子郵件摘要 (例如，對於午夜，<code>0</code>，對於下午5:00，<code>17</code>)。 請記住，這是根據伺服器本身的時間，可能與您的系統時鐘不完全符合。<br />伺服器的大致時間為：<span id =\"serverTime\"></ span><br /> 下一個每日摘要被排程在<span id =\"nextDigestTime\"></span>發送",
+	"notifications.settings": "Email notification settings",
+	"notifications.remove-images": "Remove images from email notifications"
 }

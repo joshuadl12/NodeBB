@@ -1,9 +1,13 @@
 {
-	"dashboard": "Dashboard",
+	"section-dashboard": "Dashboards",
+	"dashboard/overview": "Overview",
+	"dashboard/logins": "Logins",
+	"dashboard/users": "Users",
+	"dashboard/topics": "Topics",
 	"section-general": "عمومی",
 
 	"section-manage": "Manage",
-	"manage/categories": "Categories",
+	"manage/categories": "دسته‌بندی‌ها",
 	"manage/privileges": "Privileges",
 	"manage/tags": "Tags",
 	"manage/users": "کاربران",
@@ -31,6 +35,7 @@
 	"settings/pagination": "Pagination",
 	"settings/tags": "برچسب ها",
 	"settings/notifications": "آگاه‌سازی‌ها",
+	"settings/api": "API Access",
 	"settings/sounds": "Sounds",
 	"settings/social": "Social",
 	"settings/cookies": "کوکی ها",
@@ -70,7 +75,7 @@
 	"logout": "Log out",
 	"view-forum": "View Forum",
 
-	"search.placeholder": "جستجو در تنظیمات",
+	"search.placeholder": "Press &quot;/&quot; to search for settings",
 	"search.no-results": "هیچ نتیجه ای وجود ندارد",
 	"search.search-forum": "جستجو در انجمن برای ",
 	"search.keep-typing": "لطفا برای مشاهده نتیجه بیشتر بنویسید",

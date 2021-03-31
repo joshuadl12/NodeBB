@@ -35,6 +35,7 @@
     "details.member_count": "Antall medlemmer",
     "details.creation_date": "Opprettelsesdato",
     "details.description": "Beskrivelse",
+    "details.member-post-cids": "Category IDs to display posts from",
     "details.badge_preview": "Forhåndsvisning av skilt",
     "details.change_icon": "Endre ikon",
     "details.change_label_colour": "Change Label Colour",

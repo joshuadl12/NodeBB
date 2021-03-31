@@ -4,9 +4,6 @@
 	"address-help": "Nasledujúce e-mailové adresy budú zobrazené príjemcovi v políčkach 'Od' a 'Odpovedať'.",
 	"from": "Meno - od",
 	"from-help": "Zobrazené meno v e-maily v - Od",
-	"sendmail-rate-limit": "Send <em>X</em> emails...",
-	"sendmail-rate-delta": "... every <em>X</em> milliseconds",
-	"sendmail-rate-help": "Instructs the NodeBB mailer to limit the number of messages sent at once in order to not overwhelm email receiving services. These options do not apply if SMTP Transport is enabled (below).",
 
 	"smtp-transport": "Prenos SMTP",
 	"smtp-transport.enabled": "Pre odosielanie e-mailov použiť externý e-mailový server",
@@ -25,6 +22,8 @@
 	"smtp-transport.username": "Používateľské meno",
 	"smtp-transport.username-help": "<b>For the Gmail service,</b> enter the full email address here, especially if you are using a Google Apps managed domain.",
 	"smtp-transport.password": "Heslo",
+	"smtp-transport.pool": "Enable pooled connections",
+	"smtp-transport.pool-help": "Pooling connections prevents NodeBB from creating a new connection for every email. This option only applies if SMTP Transport is enabled.",
 
 	"template": "Upraviť šablónu e-mailu",
 	"template.select": "Vybrať šablónu e-mailu",
@@ -36,5 +35,7 @@
 	"subscriptions": "Email Digests",
 	"subscriptions.disable": "Disable email digests",
 	"subscriptions.hour": "Digest Hour",
-	"subscriptions.hour-help": "Please enter a number representing the hour to send scheduled email digests (e.g. <code>0</code> for midnight, <code>17</code> for 5:00pm). Keep in mind that this is the hour according to the server itself, and may not exactly match your system clock.<br /> The approximate server time is: <span id=\"serverTime\"></span><br /> The next daily digest is scheduled to be sent  <span id=\"nextDigestTime\"></span>"
+	"subscriptions.hour-help": "Please enter a number representing the hour to send scheduled email digests (e.g. <code>0</code> for midnight, <code>17</code> for 5:00pm). Keep in mind that this is the hour according to the server itself, and may not exactly match your system clock.<br /> The approximate server time is: <span id=\"serverTime\"></span><br /> The next daily digest is scheduled to be sent  <span id=\"nextDigestTime\"></span>",
+	"notifications.settings": "Email notification settings",
+	"notifications.remove-images": "Remove images from email notifications"
 }

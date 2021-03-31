@@ -6,6 +6,7 @@
 	"assignee": "Vekil",
 	"update": "Güncelle",
 	"updated": "Güncellendi",
+	"resolved": "Resolved",
 	"target-purged": "Şikayet edilen içerik temizlendi ve artık mevcut değil.",
 
 	"graph-label": "Günlük Şikayetler",
@@ -57,12 +58,17 @@
 	"state-rejected": "Reddedildi",
 	"no-assignee": "Atanmadı",
 
-	"sort": "Sort by",
-	"sort-newest": "Newest first",
-	"sort-oldest": "Oldest first",
-	"sort-reports": "Most reports",
+	"sort": "Sırala",
+	"sort-newest": "En yenisi önce",
+	"sort-oldest": "En eskisi önce",
+	"sort-reports": "En çok raporlanan",
+	"sort-all": "Tüm şikayet türleri...",
+	"sort-posts-only": "Sadece iletiler...",
+	"sort-downvotes": "En çok eksilenen",
+	"sort-upvotes": "En çok artılanan",
+	"sort-replies": "En çok cevap verilen",
 
-	"modal-title": "Uygunsuz İçeriği Rapor Et",
+	"modal-title": "İçeriği Şikayet Et",
 	"modal-body": "%1 %2 için şikayet nedenini belirtiniz. Alternatif olarak hızlı rapor butonlarından birini kullanabilirsiniz.",
 	"modal-reason-spam": "Gereksiz",
 	"modal-reason-offensive": "Saldırgan",
@@ -72,5 +78,10 @@
 	"modal-submit-success": "İçerik, denetlemesi için şikayet edildi.",
 	"modal-submit-confirm": "Gönderimi Onayla",
 	"modal-submit-confirm-text": "Zaten belirtilen özel bir sebebin var. Hızlı raporla göndermek istediğinizden emin misin?",
-	"modal-submit-confirm-text-help": "Hızlı bir rapor göndermek tanımlanan özel nedenlerin üzerine yazacaktır."
+	"modal-submit-confirm-text-help": "Hızlı bir rapor göndermek tanımlanan özel nedenlerin üzerine yazacaktır.",
+
+	"bulk-actions": "Toplu Aksiyonlar",
+	"bulk-resolve": "Şikayetleri Çözümle",
+	"bulk-success": "%1 şikayet güncellendi",
+	"flagged-timeago-readable": "Bayraklandı <span class=\"timeago\" title=\"%1\"></span> (%2)"
 }

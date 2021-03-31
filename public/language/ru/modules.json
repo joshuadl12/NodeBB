@@ -1,7 +1,7 @@
 {
     "chat.chatting_with": "Чат с",
     "chat.placeholder": "Введите сообщение, нажмите Enter для отправки",
-    "chat.scroll-up-alert": "You are looking at older messages, click here to go to most recent message.",
+    "chat.scroll-up-alert": "Вы просматриваете старые сообщения, щелкните здесь, чтобы перейти к последнему сообщению.",
     "chat.send": "Отправить",
     "chat.no_active": "У вас нет активных чатов.",
     "chat.user_typing": "%1 пишет...",
@@ -60,10 +60,21 @@
     "composer.zen_mode": "Полноэкранный режим",
     "composer.select_category": "Выберите категорию",
     "composer.textarea.placeholder": "Введите содержание вашего сообщения здесь, перетащите изображения",
+    "composer.schedule-for": "Schedule topic for",
+    "composer.schedule-date": "Date",
+    "composer.schedule-time": "Time",
+    "composer.cancel-scheduling": "Cancel Scheduling",
+    "composer.set-schedule-date": "Set Date",
     "bootbox.ok": "ОК",
     "bootbox.cancel": "Отмена",
     "bootbox.confirm": "Подтвердить",
     "cover.dragging_title": "Позиционирование обложки",
     "cover.dragging_message": "Перетащите обложку на желаемое место и нажмите \"Сохранить\"",
-    "cover.saved": "Обложка и её расположение сохранены"
+    "cover.saved": "Обложка и её расположение сохранены",
+    "thumbs.modal.title": "Управление иконкой темы",
+    "thumbs.modal.no-thumbs": "Иконка не найдена.",
+    "thumbs.modal.resize-note": "<strong>Примечание.</strong> Этот форум настроен на уменьшение размеров иконок тем до максимальной ширины в %1p",
+    "thumbs.modal.add": "Добавить иконку",
+    "thumbs.modal.remove": "Убрать иконку",
+    "thumbs.modal.confirm-remove": "Вы уверены, что хотите удалить эту иконку?"
 }

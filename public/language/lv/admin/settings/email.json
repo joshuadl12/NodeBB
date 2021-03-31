@@ -4,9 +4,6 @@
 	"address-help": "E-pasta adrese, ko saņēmējs redzēs laukos \"No:\" un \"Atbildēt:\".",
 	"from": "Sūtītāja vārds vai nosaukums",
 	"from-help": "Vārds vai nosaukums, ko saņēmējs redzēs kā sūtītāju.",
-	"sendmail-rate-limit": "Send <em>X</em> emails...",
-	"sendmail-rate-delta": "... every <em>X</em> milliseconds",
-	"sendmail-rate-help": "Instructs the NodeBB mailer to limit the number of messages sent at once in order to not overwhelm email receiving services. These options do not apply if SMTP Transport is enabled (below).",
 
 	"smtp-transport": "SMTP transports",
 	"smtp-transport.enabled": "Izmantot atsevišķu e-pasta serveri, lai nosūtītu e-pastus",
@@ -25,6 +22,8 @@
 	"smtp-transport.username": "Lietotājvārds",
 	"smtp-transport.username-help": "<b>Gmail pakalpojumam</b> ievadīt šeit visu e-pasta adresi, it īpaši, ja ir izmantots Google Apps pārvaldīts domēns.",
 	"smtp-transport.password": "Parole",
+	"smtp-transport.pool": "Enable pooled connections",
+	"smtp-transport.pool-help": "Pooling connections prevents NodeBB from creating a new connection for every email. This option only applies if SMTP Transport is enabled.",
 
 	"template": "Rediģēt e-pasta veidni",
 	"template.select": "Atlasīt e-pasta veidni",
@@ -36,5 +35,7 @@
 	"subscriptions": "Email Digests",
 	"subscriptions.disable": "Disable email digests",
 	"subscriptions.hour": "Kopsavilkumu nosūtīšanas stunda",
-	"subscriptions.hour-help": "Ievadīt skaitli, kas norāda stundu, kurā nosūtītu e-pasta rakstu apkopojumu (piemēram, <code>0</code> nozīmē pusnakts, <code>17</code> nozīmē plkst.1700). Paturēt prātā, ka šī ir stunda servera laikā, un tā var neatbilst Tavam pulkstenim. Aptuvens servera laiks ir: <span id=\"serverTime\"></span><br />Nākamais ikdienas apkopojums tiks nosūtīts <span id=\"nextDigestTime\"></span>"
+	"subscriptions.hour-help": "Ievadīt skaitli, kas norāda stundu, kurā nosūtītu e-pasta rakstu apkopojumu (piemēram, <code>0</code> nozīmē pusnakts, <code>17</code> nozīmē plkst.1700). Paturēt prātā, ka šī ir stunda servera laikā, un tā var neatbilst Tavam pulkstenim. Aptuvens servera laiks ir: <span id=\"serverTime\"></span><br />Nākamais ikdienas apkopojums tiks nosūtīts <span id=\"nextDigestTime\"></span>",
+	"notifications.settings": "Email notification settings",
+	"notifications.remove-images": "Remove images from email notifications"
 }
